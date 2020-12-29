@@ -1,12 +1,12 @@
-import { Runtype, Static, create } from '../runtype';
+import { Runtype, Static, create } from '../runtype.ts';
 
 export const RuntypeName = Symbol('RuntypeName');
 
 export interface Brand<B extends string, A extends Runtype>
   extends Runtype<
-    Static<A> & {
-      [RuntypeName]: B;
-    }
+  Static<A> & {
+    [RuntypeName]: B;
+  }
   > {
   tag: 'brand';
   brand: B;

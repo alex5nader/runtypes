@@ -1,15 +1,15 @@
-import { Runtype, Static, create, innerValidate } from '../runtype';
-import { hasKey } from '../util';
-import show from '../show';
+import { Runtype, Static, create, innerValidate } from '../runtype.ts';
+import { hasKey } from '../util.ts';
+import show from '../show.ts';
 
 type RecordStaticType<
   O extends { [_: string]: Runtype },
   Part extends boolean,
   RO extends boolean
-> = Part extends true
+  > = Part extends true
   ? RO extends true
-    ? { readonly [K in keyof O]?: Static<O[K]> }
-    : { [K in keyof O]?: Static<O[K]> }
+  ? { readonly [K in keyof O]?: Static<O[K]> }
+  : { [K in keyof O]?: Static<O[K]> }
   : RO extends true
   ? { readonly [K in keyof O]: Static<O[K]> }
   : { [K in keyof O]: Static<O[K]> };
@@ -18,7 +18,7 @@ export interface InternalRecord<
   O extends { [_: string]: Runtype },
   Part extends boolean,
   RO extends boolean
-> extends Runtype<RecordStaticType<O, Part, RO>> {
+  > extends Runtype<RecordStaticType<O, Part, RO>> {
   tag: 'record';
   fields: O;
   isPartial: Part;
